@@ -7,7 +7,7 @@ This project aims to learn the Symfony 7 framework [Simplon Grenoble](https://si
 ### Clone the project locally
 
 ```
-git clone https://github.com/M0orph3us/Brief_Six
+git clone https://github.com/M0orph3us/Brief_Seven
 
 ```
 
