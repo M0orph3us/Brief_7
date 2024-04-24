@@ -19,12 +19,13 @@ class UsersFixtures extends Fixture
         for ($i = 1; $i < 15; $i++) {
             $user = new Users();
             $user
-                ->setUsername()
-                ->setEmail()
-                ->setCreatedAt()
-                ->setPassword()
+                ->setUsername($faker->userName())
+                ->setEmail($faker->email())
+                ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->DateTime()))
+                ->setPassword($this->hasher->hashPassword($user, $faker->password()))
                 ->setRoles(['ROLE_USER'])
-                ->setBirthday();
+                ->setConfirmed(0)
+                ->setImageName($faker->imageUrl());
             $manager->persist($user);
             $this->addReference('user' . $i, $user);
         }
