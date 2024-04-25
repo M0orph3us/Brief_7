@@ -38,3 +38,8 @@ phpstan.neon
 ###> VSC ###
 /.vscode/
 ###< VSC ###
+
+###> folder img upload ###
+/public/uploads/products/
+/public/uploads/profils/
+###< VSC ###

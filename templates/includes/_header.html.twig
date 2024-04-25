@@ -1,29 +1,33 @@
 <header>
 	<div class="navbar-mobile" id="navbar-mobile">
-		<i class="fa-solid fa-bars fa-xl" id="open-menu-burger"></i>
-		<a href="">
+		<i class="fa-solid fa-bars" id="open-menu-burger"></i>
+		<a href="{{path('app_home')}}">
 			<img src="{{ asset('imgs/logo.webp')}}" alt="logo">
 		</a>
 		<div class="icons-container">
-			<i class="fa-solid fa-cart-arrow-down fa-xl"></i>
+			{% if app.user %}
+				<i class="fa-solid fa-cart-arrow-down fa-xl"></i>
+			{% endif %}
 			<i class="fa-solid fa-user fa-xl"></i>
 		</div>
 
 	</div>
 	<div class="navbar-desktop">
-		<a href="">
+		<a href="{{path('app_home')}}">
 			<img src="{{ asset('imgs/logo.webp')}}" alt="logo">
 		</a>
 		<ul>
 			<li>
-				<a href="">home</a>
+				<a href="{{path('app_home')}}">home</a>
 			</li>
 			<li>
 				<a href="">store</a>
 			</li>
 		</ul>
 		<div class="icons-container">
-			<i class="fa-solid fa-cart-arrow-down fa-2xl"></i>
+			{% if app.user %}
+				<i class="fa-solid fa-cart-arrow-down fa-2xl"></i>
+			{% endif %}
 			<i class="fa-solid fa-user fa-2xl"></i>
 		</div>
 	</div>
@@ -31,16 +35,27 @@
 		<div class="menu-container">
 			<i class="fa-solid fa-xmark fa-2xl" id="close-menu-burger"></i>
 			<ul>
-				<li><a href="">home</a></li>
+				<li><a class=""href="{{ path('app_home') }}">home</a></li>
 				<li><a href="">store</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="profil-container" id="profil-container">
 		<ul>
-			<li><a href="">login</a></li>
-			<li><a href="">profil</a></li>
-			<li><a href="">logout</a></li>
+			{% if not app.user %}
+				<li>
+					<a href="{{path("app_login")}}">login</a>
+				</li>
+			{% endif %}
+			{% if app.user %}
+				<li>
+					<a href="">profil</a>
+				</li>
+				<li>
+					<a href="{{path("app_logout")}}">logout</a>
+				</li>
+			{% endif %}
+
 		</ul>
 	</div>
 </header>

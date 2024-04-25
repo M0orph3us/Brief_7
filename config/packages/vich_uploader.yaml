@@ -6,12 +6,12 @@ vich_uploader:
   mappings:
     products:
       uri_prefix: uploads/imgs/products
-      upload_destination: "%kernel.project_dir%/public/uploads/imgs/products"
+      upload_destination: "%kernel.project_dir%/public/uploads/products"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
     profils:
       uri_prefix: uploads/imgs/profils
-      upload_destination: "%kernel.project_dir%/public/uploads/imgs/profils"
+      upload_destination: "%kernel.project_dir%/public/uploads/profils"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
       inject_on_load: false

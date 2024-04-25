@@ -112,25 +112,25 @@ header {
     padding: 20px;
     height: 60px;
     justify-content: space-between;
-    background-color: #0000004f;
+    background-color: $navbar-bcg-color;
     img {
       height: 40px;
       padding-left: 10px;
     }
     .fa-bars::before {
-      color: white;
+      color: $icon-color;
       border: 2px solid white;
       border-radius: 5px;
       padding: 3px 5px;
     }
     .fa-user::before {
-      color: white;
+      color: $icon-color;
       cursor: pointer;
     }
     .icons-container {
       .fa-cart-arrow-down {
         padding-right: 10px;
-        color: white;
+        color: $icon-color;
         cursor: pointer;
       }
     }
@@ -146,7 +146,7 @@ header {
     top: 0;
     height: 100%;
     width: calc(100vw - 19px);
-    background-color: #29013d;
+    background-color: $menu-burger-bcg-color;
     animation: burger 0.5s ease-out;
     @keyframes burger {
       from {
@@ -163,7 +163,7 @@ header {
       position: relative;
       height: 100%;
       i {
-        color: white;
+        color: $icon-color;
         position: absolute;
         top: 30px;
         left: 25px;
@@ -183,19 +183,20 @@ header {
             text-transform: uppercase;
             font-weight: bold;
             font-size: xx-large;
-            color: white;
+            color: $text-color;
           }
         }
       }
     }
   }
   .profil-container {
+    z-index: 1;
     display: none;
     position: fixed;
     top: 60px;
     right: 0;
     padding: 20px;
-    background-color: #0000004f;
+    background-color: $navbar-bcg-color;
     ul {
       display: flex;
       flex-direction: column;
@@ -206,7 +207,7 @@ header {
           text-transform: uppercase;
           font-weight: bold;
           font-size: large;
-          color: white;
+          color: $text-color;
         }
       }
     }
@@ -215,7 +216,17 @@ header {
 /*//////////////////////////////////// MAIN //////////////////////////////////////////////*/
 
 main {
+  padding: 20px;
+  margin-top: 60px;
   flex: 1;
+  .login-container {
+    @include template-form-login;
+  }
+  .register-container {
+    @include template-form;
+    .vich-image {
+    }
+  }
 }
 
 /*//////////////////////////////////// FOOTER ////////////////////////////////////////////*/
