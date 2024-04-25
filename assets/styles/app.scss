@@ -77,17 +77,16 @@ body {
 /*//////////////////////////////////// FONT-FAMILY ///////////////////////////////////////*/
 // @font-face {
 //   font-family: "Name FontFamily";
-//  // background-image: url('../imgs/');
 // }
 
 /*//////////////////////////////////// BODY //////////////////////////////////////////////*/
 
 body {
   z-index: 0;
-  // font-family: "Name FontFamily";
-  // background-image: url("");
-  // background-repeat: no-repeat;
-  // background-position: center;
+  background-image: url("../imgs/bcg_retro.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 /*/////////////////////////////// RESPONSIVE MOBIL 360px ///////////////////////////////////////*/
@@ -99,7 +98,120 @@ body {
 /*//////////////////////////////////// ALERTS //////////////////////////////////////////////*/
 
 /*//////////////////////////////////// HEADER ////////////////////////////////////////////*/
+header {
+  .navbar-desktop,
+  .navbar-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .navbar-mobile {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    height: 60px;
+    justify-content: space-between;
+    background-color: #0000004f;
+    img {
+      height: 40px;
+      padding-left: 10px;
+    }
+    .fa-bars::before {
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 3px 5px;
+    }
+    .fa-user::before {
+      color: white;
+      cursor: pointer;
+    }
+    .icons-container {
+      .fa-cart-arrow-down {
+        padding-right: 10px;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+  .navbar-desktop {
+    display: none;
+  }
+  .menu-burger-container {
+    z-index: 1;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: calc(100vw - 19px);
+    background-color: #29013d;
+    animation: burger 0.5s ease-out;
+    @keyframes burger {
+      from {
+        width: 0;
+        opacity: 0;
+      }
+      to {
+        width: calc(100vw - 19px);
+        opacity: 1;
+      }
+    }
 
+    .menu-container {
+      position: relative;
+      height: 100%;
+      i {
+        color: white;
+        position: absolute;
+        top: 30px;
+        left: 25px;
+      }
+      ul {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 100px;
+        text-align: center;
+        li {
+          a {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: xx-large;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  .profil-container {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    padding: 20px;
+    background-color: #0000004f;
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      row-gap: 20px;
+      li {
+        a {
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: large;
+          color: white;
+        }
+      }
+    }
+  }
+}
 /*//////////////////////////////////// MAIN //////////////////////////////////////////////*/
 
 main {

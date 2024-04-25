@@ -2,6 +2,48 @@
   font-size: 18px;
 }
 /*//////////////////////////////////// HEADER ////////////////////////////////////////////*/
+header {
+  .navbar-mobile {
+    display: none;
+  }
+  .navbar-desktop {
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    height: 120px;
+    justify-content: space-between;
+    background-color: #0000004f;
+    img {
+      height: 60px;
+      cursor: pointer;
+    }
+    ul {
+      width: max-content;
+      display: flex;
+      column-gap: 60px;
+      li {
+        a {
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: xx-large;
+          color: white;
+        }
+      }
+    }
+    i {
+      color: white;
+      cursor: pointer;
+    }
+    .icons-container {
+      .fa-cart-arrow-down {
+        padding-right: 20px;
+      }
+    }
+  }
+  .profil-container {
+    top: 120px;
+  }
+}
 
 /*//////////////////////////////////// MAIN //////////////////////////////////////////////*/
 

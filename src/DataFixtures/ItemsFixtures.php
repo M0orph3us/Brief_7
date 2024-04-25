@@ -46,6 +46,7 @@ class ItemsFixtures extends Fixture implements DependentFixtureInterface
                 ->setCategory($this->getReference('category' . $i))
                 ->setSubcategory($this->getReference('subcategory' . $i))
                 ->setStatus($this->getReference('condition' . $i))
+                ->setSeller($this->getReference('user' . $i))
                 ->setImageName($faker->imageUrl());
             $manager->persist($item);
             $this->addReference('item' . $i, $item);
@@ -55,6 +56,6 @@ class ItemsFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return [UsersFixtures::class, CategoriesFixtures::class, SubcategoriesFixtures::class, ConditionsFixtures::class];
+        return [CategoriesFixtures::class, SubcategoriesFixtures::class, ConditionsFixtures::class, UsersFixtures::class];
     }
 }

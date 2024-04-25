@@ -16,10 +16,10 @@ class CommentsFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 1; $i < 15; $i++) {
             $comment = new Comments();
             $comment
-                ->setAuthor($this->getReference('user' . $i))
                 ->setComment($faker->paragraph(2))
-                ->setItem($this->getReference('item' . $i))
-                ->setVote($faker->boolean());
+                ->setVote($faker->boolean())
+                ->setAuthor($this->getReference('user' . $i))
+                ->setItem($this->getReference('item' . $i));
             $manager->persist($comment);
             $this->addReference('comment' . $i, $comment);
         }
