@@ -101,6 +101,7 @@ body {
 header {
   .navbar-desktop,
   .navbar-mobile {
+    z-index: 1;
     position: fixed;
     top: 0;
     left: 0;
@@ -219,12 +220,39 @@ main {
   padding: 20px;
   margin-top: 60px;
   flex: 1;
+  position: relative;
   .login-container {
     @include template-form-login;
+    h1 {
+      color: $text-color;
+      text-align: center;
+      margin-bottom: 20px;
+    }
   }
   .register-container {
     @include template-form;
-    .vich-image {
+    // .vich-image {
+    // }
+  }
+
+  .items-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .items-cards-container {
+      display: grid;
+      grid-template-columns: repeat(1, 190px);
+      justify-content: center;
+      row-gap: 40px;
+      column-gap: 50px;
+      a {
+        .item-card {
+        }
+      }
+    }
+    .pagination-items {
+      padding-top: 30px;
     }
   }
 }
