@@ -39,4 +39,23 @@ class ItemsRepository extends ServiceEntityRepository
 
         return $pagination;
     }
+
+    public function paginateItemsByCategory(string $category)
+    {
+
+        $conn = $this->getEntityManager()->getConnection();
+        $sql =
+            "SELECT *
+             FROM items i
+             JOIN categories c ON
+             i.category_id = c.id
+             WHERE c.category = :category";
+
+        $params = [
+            'category' => $category
+        ];
+
+        $resultSet = $conn->executeQuery($sql, $params);
+        return $resultSet->fetchAllAssociative();
+    }
 }

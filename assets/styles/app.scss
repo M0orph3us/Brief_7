@@ -242,17 +242,29 @@ main {
     align-items: center;
     .items-cards-container {
       display: grid;
-      grid-template-columns: repeat(1, 190px);
+      grid-template-columns: repeat(1, 275px);
       justify-content: center;
       row-gap: 40px;
       column-gap: 50px;
       a {
+        color: $text-color;
         .item-card {
+          @include template-card;
         }
       }
     }
     .pagination-items {
       padding-top: 30px;
+      .pagination {
+        padding: 3px 5px;
+        background-color: $card-bcg-color;
+        border: 2px solid black;
+        border-radius: 5px;
+        color: $text-color;
+        span > a {
+          color: $text-color;
+        }
+      }
     }
   }
 }

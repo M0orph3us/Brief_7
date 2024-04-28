@@ -25,7 +25,6 @@ export function navbarMobile() {
   });
   const xmark = document.querySelector("#close-menu-burger");
   xmark.addEventListener("click", () => {
-    console.log("hello");
     menuBurgerContainer.style.display = "none";
   });
 }

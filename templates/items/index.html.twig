@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Store
+{% endblock %}
+
+{% block javascript %}
+	{% block importmap %}
+		{{ parent() }}
+		{{ encore_entry_script_tags('fetchItems') }}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div class="items-container">
+			<div class="search-items">
+				<label for="select-category">category</label>
+				<select name="select-category" id="select-category">
+					{% for category in allCategory %}
+						<option value="{{ category.category}}">{{ category.category}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="items-cards-container" id="items-cards-container">
+				{% for item in pagination %}
+					<a href="" class="link-card">
+						<div class="item-card">
+							<h2>{{ item.name}}</h2>
+							{# <img src="{{ vich_uploader_asset(item, 'imageFile') }}" alt="picture of {{ item.name }}"> #}
+							<p>stock :
+								{{ item.stock }}</p>
+							<p>price :
+								{{ item.price }}€</p>
+							<p>status :
+								{{ item.status.status }}
+							</p>
+							<p>category :
+								{{ item.category.category }}</p>
+							<p>subcategory :
+								{{ item.subcategory.subcategory }}</p>
+						</div>
+					</a>
+				{% endfor %}
+			</div>
+			<div class="pagination-items" id="pagination-items">
+				{{ knp_pagination_render(pagination) }}
+			</div>
+		</div>
+	</main>
+{% endblock %}
