@@ -83,8 +83,8 @@ body {
 
 body {
   z-index: 0;
-  background-image: url("../imgs/bcg_retro.webp");
-  background-repeat: no-repeat;
+  background-image: url("../imgs/bcg_color.svg");
+  background-repeat: repeat;
   background-position: center;
   background-size: cover;
 }
@@ -217,7 +217,13 @@ header {
 /*//////////////////////////////////// MAIN //////////////////////////////////////////////*/
 
 main {
-  padding: 20px;
+  .home-container {
+    height: 100%;
+    background-image: url("../imgs/bcg_retro.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
   margin-top: 60px;
   flex: 1;
   position: relative;
@@ -265,6 +271,12 @@ main {
           color: $text-color;
         }
       }
+    }
+  }
+  .item-detail-container {
+    padding: 20px;
+    .item-card {
+      @include template-card;
     }
   }
 }

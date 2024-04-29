@@ -5,7 +5,7 @@ export class Card {
     this.stock = data.stock;
     this.price = data.price;
     this.status = data.status_id;
-    this.url = "test";
+    this.url = "/items/detail/";
 
     this.createCard();
   }
@@ -32,7 +32,7 @@ export class Card {
 
     const createStatus = document.createElement("p");
 
-    fetch("items/status/" + this.status)
+    fetch("/items/status/" + this.status)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Erreur de réseau : " + response.status);

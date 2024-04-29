@@ -1,6 +1,16 @@
 import { Card } from "./class/Card.js";
 const selectCategory = document.querySelector("#select-category");
 selectCategory.addEventListener("change", () => {
+  const paginationItems = document.querySelector("#pagination-items");
+  if (paginationItems) {
+    paginationItems.style.display = "none";
+  }
+
+  const linkCard = document.querySelectorAll(".link-card");
+  const arrayLinkCard = [...linkCard];
+  arrayLinkCard.forEach((element) => {
+    element.remove();
+  });
   const url = "/items/" + selectCategory.value;
   fetch(url)
     .then((response) => {
@@ -10,13 +20,6 @@ selectCategory.addEventListener("change", () => {
       return response.json();
     })
     .then((data) => {
-      const paginationItems = document.querySelector("#pagination-items");
-      const linkCard = document.querySelectorAll(".link-card");
-      const arrayLinkCard = [...linkCard];
-      arrayLinkCard.forEach((element) => {
-        element.remove();
-      });
-      paginationItems.style.display = "none";
       for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
           const element = data[key];

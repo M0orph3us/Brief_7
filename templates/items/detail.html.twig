@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Item detail
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div class="item-detail-container">
+			<div class="item-card">
+				<h2>{{ item.name }}</h2>
+				<p>{{ item.description }}</p>
+				{# <img src="{{ vich_uploader_asset(item, 'imageFile') }}" alt="picture of {{ item.name }}"> #}
+				<p>stock :
+					{{ item.stock }}</p>
+				<p>price :
+					{{ item.price }}€</p>
+				<p>status :
+					{{ item.status.status }}
+				</p>
+				<p>category :
+					{{ item.category.category }}</p>
+				<p>subcategory :
+					{{ item.subcategory.subcategory }}</p>
+				{% if app.user %}
+					<a href="{{ path('item-add-cart', {'id': item.id} )}}">buy</a>
+				{% endif %}
+			</div>
+		</div>
+	</main>
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Items;
 use App\Repository\CategoriesRepository;
 use App\Repository\ConditionsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\ItemsRepository;
 use Detection\MobileDetect;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,14 +25,16 @@ class ItemsController extends AbstractController
         $detect = new MobileDetect();
         $isMobile = $detect->isMobile();
         if ($isMobile === true) {
-            $itemPerPage = 3;
+            $pagination = $itemsRepo->findAll();
+            // $mobile = true;
         } else {
-            $itemPerPage = 8;
+            $pagination = $itemsRepo->paginateItems($request, 8);
+            // $mobile = false;
         }
-        $pagination = $itemsRepo->paginateItems($request, $itemPerPage);
         return $this->render('items/index.html.twig', [
             'pagination' => $pagination,
-            'allCategory' => $allCategory
+            'allCategory' => $allCategory,
+            'mobile' => $isMobile
         ]);
     }
 
@@ -39,6 +44,7 @@ class ItemsController extends AbstractController
 
         $category = $request->get('category');
         $itemsByCategory = $itemsRepo->paginateItemsByCategory($category);
+
         // $detect = new MobileDetect();
         // $isMobile = $detect->isMobile();
         // if ($isMobile === true) {
@@ -50,11 +56,30 @@ class ItemsController extends AbstractController
         return $this->json($itemsByCategory);
     }
 
-    #[Route('items/status/{id}', name: 'app-status', methods: ['GET'])]
+    #[Route('/items/status/{id}', name: 'app-status', methods: ['GET'])]
     public function statusByItem(Request $request, ConditionsRepository $conditionsRepo): JsonResponse
     {
         $id = $request->get('id');
         $status = $conditionsRepo->findOneBy(['id' => $id]);
         return $this->json($status->getStatus());
+    }
+
+    #[Route('/items/detail/{id}', name: 'item-detail', methods: ['GET'])]
+    public function detailItem(Items $item): Response
+    {
+
+        return $this->render('items/detail.html.twig', [
+            'item' => $item
+        ]);
+    }
+
+    #[Route('/items/add/{id}', name: 'item-add-cart', methods: ['GET'])]
+    public function buyItem(Items $item, EntityManagerInterface $em, Request $request): Response
+    {
+        $idItem = $request->get('id');
+        $item->addBuyer($this->getUser());
+        $em->flush();
+        $this->addFlash('success', 'item add to your cart');
+        return $this->redirectToRoute('item-detail', ['id' => $idItem]);
     }
 }
