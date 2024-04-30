@@ -6,6 +6,11 @@
 {% block body %}
 	<main>
 		<div class="item-detail-container">
+			{% for message in app.flashes('success') %}
+				<div class="success">
+					{{ message }}
+				</div>
+			{% endfor %}
 			<div class="item-card">
 				<h2>{{ item.name }}</h2>
 				<p>{{ item.description }}</p>
@@ -22,7 +27,9 @@
 				<p>subcategory :
 					{{ item.subcategory.subcategory }}</p>
 				{% if app.user %}
-					<a href="{{ path('item-add-cart', {'id': item.id} )}}">buy</a>
+					<a href="{{ path('item-add-cart', {'id': item.id} )}}">
+						<button>add to cart</button>
+					</a>
 				{% endif %}
 			</div>
 		</div>

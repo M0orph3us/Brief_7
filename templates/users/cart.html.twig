@@ -3,4 +3,29 @@
 {% block title %}Cart
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+	<main>
+		<div class="cart-container">
+			<h2>Your cart</h2>
+			{% for message in app.flashes('success') %}
+				<div class="success">
+					{{ message }}
+				</div>
+			{% endfor %}
+			<div class="cards-cart-container">
+				{% for order in orders %}
+					<div class="card-cart">
+						<h2>{{ order.name }}</h2>
+						<p>price :
+							{{ order.price }}€</p>
+						<p>seller :
+							{{ order.seller.username}}</p>
+						<a href=" {{ path('item-delete-cart', {'id': order.id})}}">
+							<button>delete</button>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</main>
+{% endblock %}

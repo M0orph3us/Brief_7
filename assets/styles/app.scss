@@ -279,6 +279,21 @@ main {
       @include template-card;
     }
   }
+
+  .cart-container {
+    h2 {
+      color: $text-color;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .cards-cart-container {
+      .card-cart {
+        width: 70%;
+        margin: auto;
+        @include template-card;
+      }
+    }
+  }
 }
 
 /*//////////////////////////////////// FOOTER ////////////////////////////////////////////*/

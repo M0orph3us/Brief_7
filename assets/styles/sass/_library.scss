@@ -1,0 +1,24 @@
+.success {
+  color: $text-color;
+  background-color: $valid-color;
+  border-radius: 5px;
+  text-align: center;
+  padding: 3px 5px;
+  margin-top: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+}
+.error {
+  color: $text-color;
+  background-color: $error-color;
+  border-radius: 5px;
+  text-align: center;
+  padding: 3px 5px;
+  margin-top: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+}

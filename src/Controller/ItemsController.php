@@ -76,6 +76,9 @@ class ItemsController extends AbstractController
     #[Route('/items/add/{id}', name: 'item-add-cart', methods: ['GET'])]
     public function buyItem(Items $item, EntityManagerInterface $em, Request $request): Response
     {
+        $stock = $item->getStock();
+        $item->setStock($stock - 1);
+
         $idItem = $request->get('id');
         $item->addBuyer($this->getUser());
         $em->flush();

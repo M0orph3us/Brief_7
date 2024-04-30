@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ItemsRepository::class)]
 #[Vich\Uploadable]
@@ -20,6 +21,7 @@ class Items
     private ?int $id = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
@@ -29,12 +31,15 @@ class Items
     private ?\DateTimeInterface $updated_at = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?float $price = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?int $stock = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank()]
     private ?string $description = null;
 
     #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName')]

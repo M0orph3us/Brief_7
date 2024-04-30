@@ -5,6 +5,12 @@
 
 {% block body %}
 	<main>
-		<div class="home-container"></div>
+		<div class="home-container">
+			{% for message in app.flashes('success') %}
+				<div class="success">
+					{{ message }}
+				</div>
+			{% endfor %}
+		</div>
 	</main>
 {% endblock %}
