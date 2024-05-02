@@ -247,11 +247,6 @@ class Items
         return $this->status;
     }
 
-    public function __toString()
-    {
-        return $this->status;
-    }
-
     public function setStatus(?Conditions $status): static
     {
         $this->status = $status;

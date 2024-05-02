@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\ItemsRepository;
 use Detection\MobileDetect;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -26,10 +25,8 @@ class ItemsController extends AbstractController
         $isMobile = $detect->isMobile();
         if ($isMobile === true) {
             $pagination = $itemsRepo->findAll();
-            // $mobile = true;
         } else {
             $pagination = $itemsRepo->paginateItems($request, 8);
-            // $mobile = false;
         }
         return $this->render('items/index.html.twig', [
             'pagination' => $pagination,
@@ -45,14 +42,6 @@ class ItemsController extends AbstractController
         $category = $request->get('category');
         $itemsByCategory = $itemsRepo->paginateItemsByCategory($category);
 
-        // $detect = new MobileDetect();
-        // $isMobile = $detect->isMobile();
-        // if ($isMobile === true) {
-        //     $itemPerPage = 3;
-        // } else {
-        //     $itemPerPage = 8;
-        // }
-        // $pagination = "";
         return $this->json($itemsByCategory);
     }
 

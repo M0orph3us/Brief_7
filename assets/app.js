@@ -1,8 +1,9 @@
+"use strict";
 // Navbar
 import { navbarMobile, profil } from "./js/navbar.js";
 navbarMobile();
 profil();
 
-// Flash message
+// Flash messages
 import { deleteMessage } from "./js/flashMessage.js";
 deleteMessage();

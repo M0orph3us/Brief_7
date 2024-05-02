@@ -1,5 +1,6 @@
 import { Card } from "./class/Card.js";
 const selectCategory = document.querySelector("#select-category");
+
 selectCategory.addEventListener("change", () => {
   const paginationItems = document.querySelector("#pagination-items");
   if (paginationItems) {
@@ -12,22 +13,24 @@ selectCategory.addEventListener("change", () => {
     element.remove();
   });
   const url = "/items/" + selectCategory.value;
-  fetch(url)
-    .then((response) => {
+  const fetchData = async (url) => {
+    try {
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error("Erreur de réseau : " + response.status);
       }
-      return response.json();
-    })
-    .then((data) => {
+      const data = await response.json();
+
       for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
           const element = data[key];
           const card = new Card(element);
         }
       }
-    })
-    .catch((error) => {
+    } catch (error) {
       console.error("Erreur lors de la requête :", error);
-    });
+    }
+  };
+
+  fetchData(url);
 });

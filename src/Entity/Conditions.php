@@ -75,4 +75,9 @@ class Conditions
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->status;
+    }
 }
