@@ -6,8 +6,10 @@ use App\Repository\ConditionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ConditionsRepository::class)]
+#[UniqueEntity(fields: ['status'], message: 'There is already an account with this username')]
 class Conditions
 {
     #[ORM\Id]

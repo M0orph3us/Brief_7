@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Items;
 use App\Entity\Users;
+use App\Form\UserFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,14 +32,26 @@ class UsersController extends AbstractController
         $item->setStock($stock + 1);
         $em->flush();
         $this->addFlash('success', 'item delete to your cart');
-        return $this->redirectToRoute('user-cart', ['id' => $userId]);
+        return $this->redirectToRoute('user-cart', ['id' => $userId], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/user/profil/{id}', name: 'user-profil', methods: ['GET'])]
     public function profil(Users $user): Response
     {
-        return $this->render('users/cart.html.twig', [
+
+        return $this->render('users/index.html.twig', [
             'user' => $user
+        ]);
+    }
+
+    #[Route('/user/profil/{id}/edit', name: 'user-edit', methods: ['GET'])]
+    public function editProfil(Users $user): Response
+    {
+
+        $form = $this->createForm(UserFormType::class, $user);
+        return $this->render('users/edit.html.twig', [
+            'user' => $user,
+            'form' => $form
         ]);
     }
 }

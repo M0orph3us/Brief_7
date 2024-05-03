@@ -1,6 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UsersController!
+{% block title %}Profil
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+	<main>
+		<div class="user-profil-container">
+			<h2>my profil</h2>
+			<p>username :
+				{{ user.username }}</p>
+			<p>email :
+				{{ user.email }}</p>
+			<p>my picture :
+				<img src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="picture of {{ user.username }}">
+			</p>
+			<button>
+				<a href=" {{ path('user-edit', {id: user.id})}}">edit</a>
+			</button>
+		</div>
+	</main>
+{% endblock %}

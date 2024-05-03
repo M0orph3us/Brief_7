@@ -14,6 +14,9 @@
 	<main>
 		<div class="items-container">
 			<div class="search-items">
+				<button>
+					<a href="{{ path('route', {'type': 'gazue'})}}"></a>
+				</button>
 				<label for="select-category">category</label>
 				<select name="select-category" id="select-category">
 					{% for category in allCategory %}
