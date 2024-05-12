@@ -5,6 +5,9 @@
 
 {% block body %}
 	<main>
-		<div class="edit-profil-container"></div>
+		<div class="edit-profil-container">
+			{{ include('users/_form.html.twig')}}
+			<a href="{{ path('user-profil', {id: app.user.id}) }}">back to you profil</a>
+		</div>
 	</main>
 {% endblock %}

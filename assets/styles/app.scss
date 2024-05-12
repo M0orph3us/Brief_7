@@ -217,16 +217,29 @@ header {
 /*//////////////////////////////////// MAIN //////////////////////////////////////////////*/
 
 main {
+  margin-top: 60px;
+  flex: 1;
+  position: relative;
   .home-container {
     height: 100%;
     background-image: url("../imgs/bcg_retro.webp");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    padding: 20px;
+    h1 {
+      margin-block: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      color: $text-color;
+    }
+
+    p {
+      padding: 20px;
+      color: $text-color;
+    }
   }
-  margin-top: 60px;
-  flex: 1;
-  position: relative;
+
   .login-container {
     @include template-form-login;
     h1 {
@@ -292,6 +305,50 @@ main {
         margin: auto;
         @include template-card;
       }
+    }
+  }
+
+  .user-profil-container {
+    @include template-card;
+    width: max-content;
+    margin-block-start: 100px;
+    margin-inline: auto;
+  }
+
+  .edit-profil-container {
+    @include template-form;
+    width: max-content;
+    margin-top: 50px;
+    margin-inline: auto;
+    a {
+      color: $text-color;
+    }
+  }
+
+  .btn-profil-container {
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
+    button {
+      @include template-btn;
+    }
+  }
+
+  .to-sale {
+    display: none;
+    @include template-form;
+    width: 50%;
+    margin-top: 50px;
+    margin-inline: auto;
+  }
+
+  .user-sales {
+    display: none;
+    .sale-card {
+      @include template-card;
+      width: 50%;
+      margin-top: 50px;
+      margin-inline: auto;
     }
   }
 }

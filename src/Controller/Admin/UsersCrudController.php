@@ -63,8 +63,10 @@ class UsersCrudController extends AbstractCrudController implements EventSubscri
             ];
         }
     }
-
-    public static function getSubscribedEvents()
+    /**
+     * @return array
+     */
+    public static function getSubscribedEvents(): array
     {
         return [
             BeforeEntityPersistedEvent::class => ['beforePersist'],

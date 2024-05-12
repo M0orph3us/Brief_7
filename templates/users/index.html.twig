@@ -3,9 +3,27 @@
 {% block title %}Profil
 {% endblock %}
 
+{% block javascript %}
+	{% block importmap %}
+		{{ parent() }}
+		{{ encore_entry_script_tags('userProfil') }}
+	{% endblock %}
+{% endblock %}
+
+
 {% block body %}
 	<main>
-		<div class="user-profil-container">
+		{% for message in app.flashes('success') %}
+			<div class="success">
+				{{ message }}
+			</div>
+		{% endfor %}
+		<div class="btn-profil-container">
+			<button id='profil'>Profil</button>
+			<button id='my-sales'>My sales</button>
+			<button id='sell'>Submit a sale</button>
+		</div>
+		<div class="user-profil-container" id="user-profil-container">
 			<h2>my profil</h2>
 			<p>username :
 				{{ user.username }}</p>
@@ -14,9 +32,23 @@
 			<p>my picture :
 				<img src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="picture of {{ user.username }}">
 			</p>
-			<button>
-				<a href=" {{ path('user-edit', {id: user.id})}}">edit</a>
-			</button>
+			<a href=" {{ path('user-edit', {id: user.id})}}">
+				<button>edit</button>
+			</a>
+		</div>
+		<div class="user-sales" id="user-sales">
+			{% for sell in userSells %}
+				<div class="sale-card">
+					<h2>{{ sell.name}}</h2>
+					<p>stock :
+						{{ sell.stock}}</p>
+					<p>buyer :
+						{{ sell.buyer|join(',')}}</p>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="to-sale" id="to-sale">
+			{{ include('items/_form.html.twig')}}
 		</div>
 	</main>
 {% endblock %}

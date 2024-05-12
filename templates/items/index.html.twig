@@ -14,9 +14,6 @@
 	<main>
 		<div class="items-container">
 			<div class="search-items">
-				<button>
-					<a href="{{ path('route', {'type': 'gazue'})}}"></a>
-				</button>
 				<label for="select-category">category</label>
 				<select name="select-category" id="select-category">
 					{% for category in allCategory %}
@@ -29,7 +26,7 @@
 					<a href="{{ path('item-detail', {'id': item.id} )}}" class="link-card">
 						<div class="item-card">
 							<h2>{{ item.name}}</h2>
-							{# <img src="{{ vich_uploader_asset(item, 'imageFile') }}" alt="picture of {{ item.name }}"> #}
+							<img src="{{ vich_uploader_asset(item, 'imageFile') }}" alt="picture of {{ item.name }}">
 							<p>stock :
 								{{ item.stock }}</p>
 							<p>price :

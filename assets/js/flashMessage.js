@@ -16,7 +16,7 @@ export function deleteMessage() {
     arrayError.forEach((element) => {
       setTimeout(function () {
         element.remove();
-      }, 5000);
+      }, 3000);
     });
   }
 }
